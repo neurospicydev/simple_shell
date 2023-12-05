@@ -22,7 +22,7 @@ char *_getenv(char *envname)
 	for (env = environ; *env != NULL; env++)
 	{
 		if (_strncmp(*env, envname, len) == 0 && (*env)[len] == '=')
-			return (&(*env)[len + 1]); /* Return the value part */
+			return (*env + len + 1); /* Return the value part */
 	}
 	return (NULL);
 }
