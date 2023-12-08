@@ -1,0 +1,105 @@
+#include "shell.h"
+
+/**
+ * _getenv_idx - Retrieves an environmental variable index in environ
+ * @name: Name/key of the env variable to get
+ *
+ * Return: The environmental variable index in environ array
+ */
+int _getenv_idx(const char *name)
+{
+	char *key;
+	int i = 0;
+
+	while (environ[i] != NULL)
+	{
+		key = _strtok(environ[i], "=");
+		printf("%s - name: %s\n", key, name);
+		if (strcmp(name, key) == 0)
+		{
+			free(key);
+			return (i);
+		}
+		free(key);
+		i++;
+	}
+
+	return (-1);
+}
+
+/**
+ * getenv_size - Get size of environ array
+ * Return: Size oof environ array
+ */
+size_t getenv_size(void)
+{
+	size_t size = 0;
+
+	while (environ[size] != NULL)
+		size++;
+
+	return (size);
+}
+
+/**
+ * _setenv - changes or adds an environment variable
+ * @name: name of variable
+ * @value: Value of variable
+ * @overwrite: Overwrite the environmental variable
+ *
+ * Return: zero on success, or -1 on error,
+ * with errno set to indicate the cause of the error.
+ */
+int _setenv(const char *name, const char *value, int overwrite)
+{
+	/* +2 for chars '=' and '\0' */
+	int length = strlen(name) + strlen(value) + 2;
+	char *new = malloc(length * sizeof(char));
+	size_t environ_size;
+	int idx;
+	(void)overwrite;
+
+	_memset(new, '\0', length);
+	_strcat(new, (char *)name);
+	_strcat(new, "=");
+	_strcat(new, (char *)value);
+
+	idx = _getenv_idx(name);
+	if (idx >= 0)
+	{
+		if (overwrite > 0)
+			environ[idx] = strdup(new);
+	}
+	else
+	{
+		environ_size = getenv_size();
+		environ[environ_size] = strdup(new);
+		environ[environ_size + 1] = NULL;
+	}
+
+	free(new);
+	return (0);
+}
+
+/**
+ * _unsetenv - deletes the variable name from the environment
+ * @name: Name of the env variable
+ *
+ * Return: zero on success, or -1 on error,
+ * with errno set to indicate the cause of the error.
+ */
+int _unsetenv(const char *name)
+{
+	int idx = _getenv_idx(name);
+
+	if (idx >= 0)
+	{
+		while (environ[idx] != NULL)
+		{
+			environ[idx] = environ[idx + 1];
+			idx++;
+		}
+	}
+
+	return (0);
+}
