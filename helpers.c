@@ -7,7 +7,7 @@
  * Return: Always 0 (Success)
  */
 
-int _strlen(char *s)
+int _strlen(const char *s)
 {
 	int len = 0;
 
@@ -28,7 +28,7 @@ int _strlen(char *s)
  * Return: Always 0 (Success)
  */
 
-int _strncmp(char *s1, char *s2, size_t n)
+int _strncmp(const char *s1, const char *s2, size_t n)
 {
 	while (*s1 && n > 0)
 	{
