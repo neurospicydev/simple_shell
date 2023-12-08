@@ -16,7 +16,6 @@ char *get_cmd_path(char *name)
 
 	if (name == NULL)
 		return (NULL);
-
 	if (stat(name, &st) == 0)
 		return (name);
 
@@ -29,18 +28,24 @@ char *get_cmd_path(char *name)
 
 	path_len = _strlen(bin_path) + _strlen(name) + 1;
 	path = malloc((path_len) * sizeof(char));
+	if (path == NULL)
+	{
+		/* TODO: Log malloc error */
+		free(name);
+		return (NULL);
+	}
 	_memset(path, '\0', path_len);
-
 	/* is not path, then concat bin_path */
 	path = _strcat(path, bin_path);
 	path = _strcat(path, name);
 
+	/* Free the name here */
+	free(name);
 	/* cmd path not found */
 	if (stat(path, &st) != 0)
 	{
 		free(path);
 		return (NULL);
 	}
-
 	return (path);
 }

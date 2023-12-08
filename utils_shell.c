@@ -12,7 +12,7 @@ char **build_cmd_array(char *line, int *token_count)
 	char *token, *delim = " ";
 	char **cmd = NULL;
 
-	token = _strtok(line, delim);
+	token = get_cmd_path(_strtok(line, delim));
 
 	while (token != NULL)
 	{
