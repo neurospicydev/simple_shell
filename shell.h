@@ -27,10 +27,7 @@ struct Node
 };
 
 char *_getenv(char *envname);
-int _strlen(const char *s);
-int _strncmp(const char *s1, const char *s2, size_t n);
 void print_env(char *envname);
-char *_strtok(char *str, const char *delim);
 void addNode(struct Node **head, const char *dir);
 struct Node *build_linked_list(void);
 void print_list(struct Node *head);
@@ -45,12 +42,12 @@ int handle_cmd(char *program_name, char **cmd, int *token_count);
 void print_string_array(char **arr, size_t len);
 
 /* UTILS - STRING */
-int _strlen(char *str);
+int _strlen(const char *s);
 char *_strtok(char *str, const char *delim);
+int _strncmp(const char *s1, const char *s2, size_t n);
 
 /* UTILS - MEMORY MANAGEMENT */
 void free_string_array(char **array, size_t len);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
->>>>>>> 027d0f24cbec4f8a6c7c1c246d57a2387eed9847
 
 #endif /* SHELL_H */

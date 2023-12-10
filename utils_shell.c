@@ -20,7 +20,7 @@ char **build_cmd_array(char *line, int *token_count)
 					   *token_count * sizeof(char *),
 					   (*token_count + 1) * sizeof(char *));
 
-		cmd[*token_count] = malloc(strlen(token) + 1);
+		cmd[*token_count] = malloc(_strlen(token) + 1);
 		/* Handle failure and clean all memory */
 
 		strcpy(cmd[*token_count], token);
