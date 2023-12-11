@@ -72,11 +72,5 @@ char *get_cmd_path(char *name)
 	/* Free the name here */
 	free(name);
 
-	if (!is_existing_path(path))
-	{
-		free(path);
-		path = NULL;
-	}
-
 	return (path);
 }

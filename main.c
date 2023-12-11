@@ -15,6 +15,7 @@ int main(int ac, char **argv, char **env)
 	size_t length = 0;
 	char **cmd = NULL;
 	int token_count = 0;
+	int status;
 	(void)ac;
 	(void)env;
 
@@ -27,10 +28,10 @@ int main(int ac, char **argv, char **env)
 		cmd = build_cmd_array(line, &token_count);
 
 		/* TODO: get return value to exit if necessary */
-		handle_cmd(argv[0], cmd, &token_count);
+		status = handle_cmd(argv[0], cmd, &token_count);
 	}
 
 	free(line);
 
-	return (0);
+	return (status);
 }

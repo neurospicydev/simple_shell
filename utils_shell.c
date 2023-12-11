@@ -57,7 +57,13 @@ int handle_cmd(char *program_name, char **cmd, int *token_count)
 	pid_t shell_pid;
 
 	if (cmd == NULL)
-		return (0);
+		return (127);
+
+	if (!is_existing_path(cmd[0]))
+	{
+		write(STDERR_FILENO, NOT_FOUND, _strlen(NOT_FOUND));
+		return (127);
+	}
 
 	shell_pid = fork();
 

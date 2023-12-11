@@ -13,6 +13,8 @@
 
 extern char **environ;
 
+#define NOT_FOUND "Not found\n"
+
 /**
  * struct Node - A structure representing a node
  * in a linked list
