@@ -1,23 +1,5 @@
 #include "shell.h"
 
-/**
- * _strlen - A function that returns the length of a string.
- * @s: string parameter of type char.
- *
- * Return: Always 0 (Success)
- */
-
-int _strlen(const char *s)
-{
-	int len = 0;
-
-	while (*s != '\0') /* null terminator in C */
-	{
-		len++;
-		s++;
-	}
-	return (len); /* retun the length of the string */
-}
 
 /**
  * _strncmp - A function that compares two strings
@@ -45,4 +27,26 @@ int _strncmp(const char *s1, const char *s2, size_t n)
 
 	/* return ascii difference after converting *char to unsigned *char */
 	return (*(unsigned char *)s1 - *(unsigned char *)s2);
+}
+
+/**
+* _strcpy - A function that copies the string pointed
+* to by src,including the terminating null byte \0
+* to the buffer pointed to by dest.
+* @dest: Pointer variable of type char, destination of copy
+* @src: Pointer variable of type char, source of copy
+*
+* Return: The pointer to dest.
+*/
+
+char *_strcpy(char *dest, char *src)
+{
+	int i = 0;
+
+	for (; src[i]; i++)
+	{
+		dest[i] = src[i];
+	}
+	dest[i] = '\0';
+	return (dest);
 }

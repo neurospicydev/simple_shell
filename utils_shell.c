@@ -12,7 +12,7 @@ char **build_cmd_array(char *line, int *token_count)
 	char *token, *delim = " ";
 	char **cmd = NULL;
 
-	token = _strtok(line, delim);
+	token = get_cmd_path(_strtok(line, delim));
 
 	while (token != NULL)
 	{
@@ -20,7 +20,7 @@ char **build_cmd_array(char *line, int *token_count)
 					   *token_count * sizeof(char *),
 					   (*token_count + 1) * sizeof(char *));
 
-		cmd[*token_count] = malloc(_strlen(token) + 1);
+		cmd[*token_count] = malloc(strlen(token) + 1);
 		/* Handle failure and clean all memory */
 
 		strcpy(cmd[*token_count], token);
@@ -74,6 +74,7 @@ int handle_cmd(char *program_name, char **cmd, int *token_count)
 	}
 	else if (shell_pid > 0)
 	{
+
 		/* Parent process */
 		if (cmd)
 		{
