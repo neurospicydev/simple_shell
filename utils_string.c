@@ -11,11 +11,9 @@ int _strlen(const char *s)
 {
 	int len = 0;
 
-	while (*s != '\0') /* null terminator in C */
-	{
+	while (s && s[len] != '\0') /* null terminator in C */
 		len++;
-		s++;
-	}
+
 	return (len); /* retun the length of the string */
 }
 
@@ -97,4 +95,28 @@ char *_strcat(char *dest, char *src)
 	dest[dest_len + i] = '\0';
 
 	return (dest);
+}
+
+/**
+ * _strdup - Duplicates a string
+ * @s: String to be duplicated
+ *
+ * Return: Copy of string passed as argument
+ */
+char *_strdup(const char *s)
+{
+	int len = 0, i;
+	char *copy;
+
+	len = _strlen(s);
+	copy = malloc((len + 1) * sizeof(char));
+	if (copy == NULL)
+		return (NULL);
+
+	for (i = 0; i < len; i++)
+		copy[i] = s[i];
+
+	copy[len] = '\0';
+
+	return (copy);
 }

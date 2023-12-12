@@ -96,12 +96,12 @@ int _setenv(const char *name, const char *value, int overwrite)
 	if (idx >= 0)
 	{
 		if (overwrite > 0)
-			environ[idx] = strdup(new);
+			environ[idx] = _strdup(new);
 	}
 	else
 	{
 		environ_size = getenv_size();
-		environ[environ_size] = strdup(new);
+		environ[environ_size] = _strdup(new);
 		environ[environ_size + 1] = NULL;
 	}
 

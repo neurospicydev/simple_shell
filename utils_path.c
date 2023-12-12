@@ -55,7 +55,7 @@ char *get_cmd_path(char *name)
 		return (NULL);
 
 	if (is_existing_path(name) || is_path(name))
-		return (strdup(name));
+		return (_strdup(name));
 
 	path_len = _strlen(bin_path) + _strlen(name) + 1;
 	path = malloc((path_len) * sizeof(char));

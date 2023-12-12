@@ -22,7 +22,7 @@ void addNode(struct Node **head, const char *dir)
 	}
 
 	/* Allocate memory to each directory and copy value*/
-	newNode->dir = strdup(dir);
+	newNode->dir = _strdup(dir);
 
 	if (newNode->dir == NULL)
 	{
