@@ -27,6 +27,12 @@ int main(int ac, char **argv, char **env)
 		/* Build command array */
 		cmd = build_cmd_array(line, &token_count);
 
+		print_string_array(cmd, token_count);
+
+		status = preprocess_cmd(*argv, cmd, &token_count);
+		if (status != 0)
+			continue;
+
 		/* TODO: get return value to exit if necessary */
 		status = handle_cmd(argv[0], cmd, &token_count);
 	}

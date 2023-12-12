@@ -38,6 +38,7 @@ void free_list(struct Node *head);
 
 /* UTILS - SHELL */
 char **build_cmd_array(char *line, int *token_count);
+int preprocess_cmd(char *program_name, char **cmd, int *token_count);
 int handle_cmd(char *program_name, char **cmd, int *token_count);
 
 /* UTILS - PATH */
@@ -62,7 +63,7 @@ char *_strtok(char *str, const char *delim);
 char *_strcat(char *dest, char *src);
 int _strncmp(const char *s1, const char *s2, size_t n);
 char *_strncat(char *dest, char *src, int n);
-char *_strdup(char *str);
+char *_strdup(const char *str);
 char *_strcpy(char *dest, char *src);
 
 /* UTILS - MEMORY MANAGEMENT */
