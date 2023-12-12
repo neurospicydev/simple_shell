@@ -9,6 +9,9 @@ void print_string_array(char **arr, size_t len)
 {
 	size_t i = 0;
 
+	if (arr == NULL)
+		return;
+
 	for (i = 0; i < len; i++)
 		printf("%lu - %s\n", i, arr[i]);
 }
