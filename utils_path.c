@@ -1,8 +1,8 @@
 #include "shell.h"
-#include <sys/stat.h>
 
 /**
  * is_path - Check if string is formatted as path
+ * @test_path: Path to be tested
  *
  * Return: true if is path, false otherwise
  */
@@ -22,6 +22,7 @@ bool is_path(char *test_path)
 
 /**
  * is_existing_path - Check if path exist
+ * @test_path: Path to be tested
  *
  * Return: true if is path, false otherwise
  */
@@ -29,13 +30,14 @@ bool is_existing_path(char *test_path)
 {
 	struct stat st;
 
-	/* cmd path not found */
-	if (stat(test_path, &st) != 0)
-	{
+	if (test_path == NULL)
 		return (false);
-	}
 
-	return (true);
+	/* cmd path found */
+	if (stat(test_path, &st) == 0)
+		return (true);
+
+	return (false);
 }
 
 /**
@@ -53,14 +55,13 @@ char *get_cmd_path(char *name)
 		return (NULL);
 
 	if (is_existing_path(name) || is_path(name))
-		return (name);
+		return (strdup(name));
 
 	path_len = _strlen(bin_path) + _strlen(name) + 1;
 	path = malloc((path_len) * sizeof(char));
 	if (path == NULL)
 	{
 		/* TODO: Log malloc error */
-		free(name);
 		return (NULL);
 	}
 
@@ -69,8 +70,10 @@ char *get_cmd_path(char *name)
 	path = _strcat(path, bin_path);
 	path = _strcat(path, name);
 
-	/* Free the name here */
-	free(name);
+	/**
+	 * This is the ILLEGAL free causing all issues
+	 free(name);
+	 */
 
 	return (path);
 }
