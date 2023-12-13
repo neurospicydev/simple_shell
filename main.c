@@ -25,6 +25,8 @@ int main(int ac, char **argv, char **env)
 		line[bytes_read - 1] = '\0';
 		/* Build command array */
 		cmd = build_cmd_array(line, &token_count);
+		if (cmd == NULL)
+			continue;
 		if (_strcmp(*cmd, "exit") == 0)
 			handle_exit(line, cmd, &token_count);
 		if (_strcmp(*cmd, "setenv") == 0 || _strcmp(*cmd, "unsetenv") == 0)
