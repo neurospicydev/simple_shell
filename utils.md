@@ -61,6 +61,18 @@ Splits a string into tokens separated by delimiter
 	*/
 	char *_strtok(char *str, const char *delim);
 	```
+3. _strdup:
+Duplicates a string
+
+	```
+	/**
+	* _strdup - Duplicates a string
+	* @s: String to be duplicated
+	*
+	* Return: Copy of string passed as argument
+	*/
+	char *_strdup(const char *s);
+	```
 
 ## Path
 1. get_cmd_path:
