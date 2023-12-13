@@ -80,4 +80,6 @@ char *get_cmd_path(char *name);
 /* UTILS - ERRORS */
 void err_invalid_argc(char *process_name, int *status);
 
+ssize_t _getline(char **lineptr, size_t *n);
+
 #endif /* SHELL_H */
