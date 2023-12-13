@@ -40,6 +40,7 @@ void free_list(struct Node *head);
 char **build_cmd_array(char *line, int *token_count);
 int preprocess_cmd(char *program_name, char **cmd, int *token_count);
 int handle_cmd(char *program_name, char **cmd, int *token_count);
+void handle_exit(char *line, char **cmd, int *token_count);
 
 /* UTILS - PATH */
 bool is_path(char *str);

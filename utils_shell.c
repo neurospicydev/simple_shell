@@ -92,6 +92,14 @@ int handle_cmd(char *program_name, char **cmd, int *token_count)
 	if (cmd == NULL)
 		return (0);
 
+	if (_strcmp(*cmd, "env") == 0)
+	{
+		_printenv();
+		free_string_array(cmd, *token_count);
+		*token_count = 0;
+		return (0);
+	}
+
 	shell_pid = fork();
 
 	/* Child process */
@@ -117,4 +125,20 @@ int handle_cmd(char *program_name, char **cmd, int *token_count)
 	}
 
 	return (0);
+}
+
+/**
+ * handle_exit - Exits the function with status int
+ *
+ * @line: Line passed by user
+ * @cmd: Generated cmd array
+ * @token_count: Pointer to the token count
+ */
+void handle_exit(char *line, char **cmd, int *token_count)
+{
+	int status = cmd[1] != NULL ? atoi(cmd[1]) : 0;
+
+	free_string_array(cmd, *token_count);
+	free(line);
+	_exit(status);
 }
