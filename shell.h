@@ -38,6 +38,7 @@ int _strncmp(const char *s1, const char *s2, size_t n);
 void print_env(char *envname);
 char *_strtok(char *str, const char *delim);
 void print_env(char *envname);
+char *_strtok(char *str, const char *delim);
 void addNode(struct Node **head, const char *dir);
 struct Node *build_linked_list(void);
 void print_list(struct Node *head);
@@ -69,7 +70,7 @@ int _unsetenv(const char *name);
 char *_getenv(char *envname);
 
 /* UTILS - STRING */
-int _strlen(const char *s);
+int _strlen(char *str);
 char *_strtok(char *str, const char *delim);
 char *_strcat(char *dest, char *src);
 int _strncmp(const char *s1, const char *s2, size_t n);

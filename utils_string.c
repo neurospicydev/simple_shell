@@ -15,6 +15,20 @@ int _strlen(const char *s)
 		len++;
 
 	return (len); /* retun the length of the string */
+
+ * _strlen - Computes the length of a string
+ * @str: String pointer
+ *
+ * Return: int, length of srtring
+ */
+int _strlen(char *str)
+{
+	int len = 0;
+
+	while (str != NULL && str[len] != '\0')
+		len++;
+
+	return (len);
 }
 
 /**
