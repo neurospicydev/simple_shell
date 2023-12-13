@@ -14,7 +14,6 @@ int _getenv_idx(const char *name)
 	while (environ[i] != NULL)
 	{
 		key = _strtok(environ[i], "=");
-		printf("%s - name: %s\n", key, name);
 		if (strcmp(name, key) == 0)
 		{
 			free(key);
@@ -40,7 +39,6 @@ size_t getenv_size(void)
 
 	return (size);
 }
-
 
 /**
  * _getenv - A function that returns the value
