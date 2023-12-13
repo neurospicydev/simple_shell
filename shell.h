@@ -65,6 +65,7 @@ int _strncmp(const char *s1, const char *s2, size_t n);
 char *_strncat(char *dest, char *src, int n);
 char *_strdup(const char *str);
 char *_strcpy(char *dest, char *src);
+int _strcmp(const char *s1, const char *s2);
 
 /* UTILS - MEMORY MANAGEMENT */
 void free_string_array(char **array, size_t len);
