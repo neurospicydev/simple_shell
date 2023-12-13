@@ -33,7 +33,6 @@ struct Node
 
 
 char *_getenv(char *envname);
-int _strlen(const char *s);
 int _strncmp(const char *s1, const char *s2, size_t n);
 void print_env(char *envname);
 char *_strtok(char *str, const char *delim);
@@ -70,7 +69,7 @@ int _unsetenv(const char *name);
 char *_getenv(char *envname);
 
 /* UTILS - STRING */
-int _strlen(char *str);
+int _strlen(const char *str);
 char *_strtok(char *str, const char *delim);
 char *_strcat(char *dest, char *src);
 int _strncmp(const char *s1, const char *s2, size_t n);
