@@ -23,23 +23,23 @@ int main(int ac, char **argv, char **env)
 	{
 		/* TODO: Trim line for leading, double and tailing whitepaces*/
 		line[bytes_read - 1] = '\0';
-
 		/* Build command array */
 		cmd = build_cmd_array(line, &token_count);
-
 		if (_strcmp(*cmd, "exit") == 0)
 			handle_exit(line, cmd, &token_count);
-
 		if (_strcmp(*cmd, "setenv") == 0 || _strcmp(*cmd, "unsetenv") == 0)
 		{
 			status = handle_env_builtins_cmd(cmd, &token_count);
 			continue;
 		}
-
+		if (_strcmp(*cmd, "cd") == 0)
+		{
+			status = handle_cd_builtins_cmd(cmd, &token_count);
+			continue;
+		}
 		status = preprocess_cmd(*argv, cmd, &token_count);
 		if (status != 0)
 			continue;
-
 		status = handle_cmd(*argv, cmd, &token_count);
 	}
 

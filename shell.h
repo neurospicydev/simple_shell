@@ -10,6 +10,7 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <stdbool.h>
+#define PATH_MAX 4096 /* # chars in a path name including nul */
 
 extern char **environ;
 
@@ -42,6 +43,7 @@ int preprocess_cmd(char *program_name, char **cmd, int *token_count);
 int handle_cmd(char *program_name, char **cmd, int *token_count);
 void handle_exit(char *line, char **cmd, int *token_count);
 int handle_env_builtins_cmd(char **cmd, int *token_count);
+int handle_cd_builtins_cmd(char **cmd, int *token_count);
 
 /* UTILS - PATH */
 bool is_path(char *str);
