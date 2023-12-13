@@ -142,3 +142,39 @@ void handle_exit(char *line, char **cmd, int *token_count)
 	free(line);
 	_exit(status);
 }
+
+/**
+ * handle_env_builtins_cmd - Handles the cmd execution
+ * @cmd: Generated cmd array
+ * @token_count: Pointer to the token count
+ *
+ * Return: 0(sucess), an interger if error
+ */
+int handle_env_builtins_cmd(char **cmd, int *token_count)
+{
+	int status = 0;
+	int cmd_arr_length = 0;
+
+	while (cmd[cmd_arr_length] != NULL)
+		cmd_arr_length++;
+
+	/* Check argument count */
+	if (_strcmp(*cmd, "setenv") == 0 && cmd_arr_length != 3)
+		err_invalid_argc("setenv", &status);
+
+	if (_strcmp(*cmd, "unsetenv") == 0 && cmd_arr_length != 2)
+		err_invalid_argc("unsetenv", &status);
+
+	/* Handle setenv */
+	if (_strcmp(*cmd, "setenv") == 0 && cmd_arr_length == 3)
+		status = _setenv(cmd[1], cmd[2], true);
+
+	/* Handle unsetenv */
+	if (_strcmp(*cmd, "unsetenv") == 0 && cmd_arr_length == 2)
+		status = _unsetenv(cmd[1]);
+
+	free_string_array(cmd, *token_count);
+	*token_count = 0;
+
+	return (status);
+}

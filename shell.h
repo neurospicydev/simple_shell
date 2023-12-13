@@ -41,6 +41,7 @@ char **build_cmd_array(char *line, int *token_count);
 int preprocess_cmd(char *program_name, char **cmd, int *token_count);
 int handle_cmd(char *program_name, char **cmd, int *token_count);
 void handle_exit(char *line, char **cmd, int *token_count);
+int handle_env_builtins_cmd(char **cmd, int *token_count);
 
 /* UTILS - PATH */
 bool is_path(char *str);
@@ -75,5 +76,8 @@ char *_memset(char *s, char b, unsigned int n);
 
 /* UTILS - PATH */
 char *get_cmd_path(char *name);
+
+/* UTILS - ERRORS */
+void err_invalid_argc(char *process_name, int *status);
 
 #endif /* SHELL_H */
