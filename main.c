@@ -19,7 +19,7 @@ int main(int ac, char **argv, char **env)
 	(void)ac;
 	(void)env;
 
-	while ((bytes_read = _getline(&line, &length)) != -1)
+	while ((bytes_read = getline(&line, &length, stdin)) != -1)
 	{
 		/* TODO: Trim line for leading, double and tailing whitepaces*/
 		line[bytes_read - 1] = '\0';
